@@ -53,7 +53,7 @@ ACDC StoreManager é uma solução completa e intuitiva para gerenciamento de es
 
 [Fernando Cavalcanti](https://github.com/FernandoCavalcantii) - fafhc@cesar.school
 
-[Antônio Laprovitera](https://github.com/antoniolaprov) - antoniolaprov
+[Antônio Laprovitera](https://github.com/antoniolaprov) - aaal@cesar.school
 
 [Gabriel Magalhães](https://github.com/gabrielmdev) - gmm@cesar.school
 
