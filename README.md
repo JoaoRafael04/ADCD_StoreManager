@@ -57,4 +57,4 @@ ADCD StoreManager é uma solução completa e intuitiva para gerenciamento de es
 
 [Gabriel Magalhães](https://github.com/gabrielmdev) - gmm@cesar.school
 
-[João Rafael]() - 
+[João Rafael](https://github.com/JoaoRafael04) - jraf@cesar.school
