@@ -39,6 +39,23 @@ ADCD StoreManager é uma solução completa e intuitiva para gerenciamento de es
 
 ![made-with-Azure](https://img.shields.io/badge/Made%20with-Azure-brightgreen)
 
+## Entregas
+
+### Entrega 1
+
+- **Quadro de Histórias**
+
+![Quadro de Histórias](Imagens/mapa_das_historias.jpeg)
+
+- **Link do jira e Print das Historias**
+
+A descrição das historias está no Jira.
+
+https://cesar-team-omws9jcc.atlassian.net/jira/software/projects/ADCD/boards/34/backlog
+
+![Quadro de Histórias](Imagens/historias_backlog.png)
+
+
 
 
 ## 📄 Docs
