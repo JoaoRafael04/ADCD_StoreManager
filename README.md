@@ -39,6 +39,15 @@ ADCD StoreManager é uma solução completa e intuitiva para gerenciamento de es
 
 ![made-with-Azure](https://img.shields.io/badge/Made%20with-Azure-brightgreen)
 
+## Entregas
+
+### Entrega 1
+
+
+
+
+
+
 
 
 ## 📄 Docs
