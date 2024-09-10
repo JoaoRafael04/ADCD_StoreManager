@@ -61,7 +61,7 @@ https://www.figma.com/design/h8iUL4X9aDi0fdhbmwFAkm/PROJETO-BAIXA-FIDELIDADE?nod
 
 - **Video das Historias**
 
-
+https://www.youtube.com/watch?v=9WM5FAH4sw8
 
 ## 📄 Docs
 
