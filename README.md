@@ -55,6 +55,11 @@ https://cesar-team-omws9jcc.atlassian.net/jira/software/projects/ADCD/boards/34/
 
 ![Quadro de Histórias](Imagens/historias_backlog.png)
 
+- **Link do Figma**
+    
+https://www.figma.com/design/h8iUL4X9aDi0fdhbmwFAkm/PROJETO-BAIXA-FIDELIDADE?node-id=0-1&t=53NrRXOKpaIkqws7-1
+
+- **Video das Historias**
 
 
 
