@@ -45,7 +45,7 @@ ADCD StoreManager é uma solução completa e intuitiva para gerenciamento de es
 
 - **Quadro de Histórias**
 
-![Quadro de Histórias](Imagens/mapa_das_historias.jpeg)
+![Quadro de Histórias](Imagens/Sprint1.png)
 
 - **Link do jira e Print das Historias**
 
@@ -61,7 +61,7 @@ https://www.figma.com/design/h8iUL4X9aDi0fdhbmwFAkm/PROJETO-BAIXA-FIDELIDADE?nod
 
 - **Video das Historias**
 
-
+https://www.youtube.com/watch?v=9WM5FAH4sw8
 
 ## 📄 Docs
 
