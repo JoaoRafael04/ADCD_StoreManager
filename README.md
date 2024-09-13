@@ -59,6 +59,10 @@ https://cesar-team-omws9jcc.atlassian.net/jira/software/projects/ADCD/boards/34/
     
 https://www.figma.com/design/h8iUL4X9aDi0fdhbmwFAkm/PROJETO-BAIXA-FIDELIDADE?node-id=0-1&t=53NrRXOKpaIkqws7-1
 
+- **Link do Excalidraw**
+    
+[https://excalidraw.com/#room=c5d3c64e7ba02faf097d,kZaIXbL52UexlnZmBIus1A](https://excalidraw.com/#room=c5d3c64e7ba02faf097d,kZaIXbL52UexlnZmBIus1A)
+
 - **Video das Historias**
 
 https://www.youtube.com/watch?v=9WM5FAH4sw8
