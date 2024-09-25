@@ -11,8 +11,8 @@ class UserRegistrationForm(forms.ModelForm):
     class Meta:
         model = CustomUser
         fields = [
-            'full_name', 'cpf', 'full_address', 'cep', 'street', 
-            'street_number', 'city', 'state', 'country', 'email', 
+            'full_name', 'cpf', 'cep', 'street', 
+            'home_number', 'city', 'state', 'country', 'email', 
             'phone_number', 'password'
         ]
 

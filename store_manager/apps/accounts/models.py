@@ -28,7 +28,7 @@ class CustomUser(AbstractUser):
     
     # Address fields
     street = models.CharField(max_length=255)  
-    street_number = models.CharField(max_length=10)  
+    home_number = models.CharField(max_length=10)  
     city = models.CharField(max_length=100)  
     state = models.CharField(max_length=100)  
     country = models.CharField(max_length=100, default='Brazil')  
@@ -37,4 +37,4 @@ class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)
 
     USERNAME_FIELD = 'email'  
-    REQUIRED_FIELDS = ['username', 'cpf', 'full_address', 'phone_number', 'street', 'street_number', 'city', 'state', 'country']  
+    REQUIRED_FIELDS = ['username', 'cpf', 'phone_number', 'street', 'home_number', 'city', 'state', 'country']  
