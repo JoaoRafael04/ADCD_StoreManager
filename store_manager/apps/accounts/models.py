@@ -37,4 +37,18 @@ class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)
 
     USERNAME_FIELD = 'email'  
-    REQUIRED_FIELDS = ['username', 'cpf', 'phone_number', 'street', 'home_number', 'city', 'state', 'country']  
+    REQUIRED_FIELDS = ['username', 'cpf', 'phone_number', 'street', 'home_number', 'city', 'state', 'country']  \
+        
+# aq ta definindo uma classe chamada filial, que representa uma tabela no banco de dados
+# A a classe passa como parametro "models.Model", que Ã© a classe base para todos os modelos em django
+class Filial(models.Model):
+    nome = models.CharField(max_length=255)
+    endereco = models.CharField(max_length=255)
+    cidade = models.CharField(max_length=100)
+    estado = models.CharField(max_length=50)
+    telefone = models.CharField(max_length=15)
+    data_abertura = models.DateField()
+
+   
+    def __str__(self): # aq ele transformna o objeto Filial pra string
+        return self.nome #ai aqui vai retornar o nome da filial que a gente colocou antes

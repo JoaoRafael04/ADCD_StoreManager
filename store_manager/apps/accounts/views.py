@@ -60,6 +60,49 @@ def reset_password(request):
 from django.contrib.auth.decorators import login_required
 @login_required
 def control_painel_view(request):
-    return render(request, 'control_painel.html')
+    return render(request, 'accounts/control_painel.html')
 
 
+
+
+
+# views.py
+from django.shortcuts import render, redirect
+from .models import Filial
+
+def cadastrar_filial(request):
+    if request.method == 'POST':
+        nome = request.POST.get('nome')  # Usando get() para evitar o erro
+        endereco = request.POST.get('endereco')
+        cidade = request.POST.get('cidade')
+        estado = request.POST.get('estado')
+        telefone = request.POST.get('telefone')
+        data_abertura = request.POST.get('data_abertura')
+
+        # Verifique se algum campo obrigatório é None ou vazio
+        if not nome or not endereco or not cidade or not estado or not telefone or not data_abertura:
+            # Lide com o erro, como retornar uma mensagem de erro
+            return render(request, 'accounts/cadastro_filial.html', {'error': 'Todos os campos são obrigatórios!'})
+
+        # Criação da nova filial
+        nova_filial = Filial(
+            nome=nome,
+            endereco=endereco,
+            cidade=cidade,
+            estado=estado,
+            telefone=telefone,
+            data_abertura=data_abertura
+        )
+        nova_filial.save()
+        
+        return redirect('control_painel')
+    
+    return render(request, 'accounts/cadastro_filial.html')
+
+# View para listar todas as filiais cadastradas
+def listar_filiais(request):
+    # Busca todas as filiais no banco de dados
+    filiais = Filial.objects.all()
+    
+    # ai a gente chama o render aqui e renderiza o template e passa a lista de filiais como contexto
+    return render(request, 'accounts/control_painel.html', {'filiais': filiais})

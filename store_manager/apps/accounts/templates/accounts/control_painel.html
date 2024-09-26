@@ -1,0 +1,25 @@
+<!-- control_painel.html -->
+{% if user.is_authenticated %}
+<h1>Bem-vindo ao Painel de Controle</h1>
+
+<h2>Lista de Filiais</h2>
+    
+<ul>
+    {% for filial in filiais %}
+        <li>{{ filial.nome }} | {{ filial.endereco }} | {{ filial.cidade }} | {{ filial.estado }} | {{ filial.telefone }} | {{ filial.data_abertura }}</li>
+    {% empty %}
+        <li>Nenhuma filial cadastrada.</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'cadastrar_empresa' %}">Cadastrar nova filial</a><br><br>
+
+<!-- Botão de logout -->
+<form method="POST" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+</form>
+
+
+{% else %}
+    <p>Você não está logado. <a href="{% url 'login' %}">Login</a></p>
+{% endif %}

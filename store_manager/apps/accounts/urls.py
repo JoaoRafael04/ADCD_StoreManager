@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import register, user_login, reset_password
+from .views import register, user_login, cadastrar_filial, listar_filiais
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import LoginView
+from . import views
 
 
 class CustomLoginView(LoginView):
@@ -19,6 +20,14 @@ urlpatterns = [
     
     path('login/', user_login, name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'), # Rota de logout
-    path('control_painel/', auth_views.LoginView.as_view(template_name='control_painel.html'), name='control_painel'),     # Rota para o painel de controle
+    path('control_painel/', listar_filiais , name='control_painel'),     # Rota para o painel de controle
+    
+    
+    
+    path('cadastrar_empresa/', cadastrar_filial, name='cadastrar_empresa'),
+    # rota para listar todas as filiais cadastradas
+    # path('lista_filiais/', listar_filiais, name='lista_filiais'),
+    # rota para o formulÃ¡rio de cadastro de nova filial
+    path('filiais/cadastrar/', views.cadastrar_filial, name='cadastrar_filial'),
     
 ]

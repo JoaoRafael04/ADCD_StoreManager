@@ -1,0 +1,48 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Stock Manager{% endblock %}</title>
+    {% load static %}  <!-- Carrega a biblioteca de arquivos estáticos -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+    <header class="header">
+        <div class="content">
+          <ul class="nav">
+                <li><a href="{% url 'control_painel' %}">Voltar ao Painel</a></li>
+            </ul>
+        </div> <!-- content -->
+    </header>
+
+{% block content %}
+    <h1>Cadastrar Nova Filial</h1>
+ 
+    <form method="post" action="{% url 'cadastrar_empresa' %}">
+        {% csrf_token %}
+        <label for="nome">Nome da Filial:</label>
+        <input type="text" name="nome" id="nome" required>
+    
+        <label for="endereco">Endereço:</label>
+        <input type="text" name="endereco" id="endereco" required>
+    
+        <label for="cidade">Cidade:</label>
+        <input type="text" name="cidade" id="cidade" required>
+    
+        <label for="estado">Estado:</label>
+        <input type="text" name="estado" id="estado" required>
+    
+        <label for="telefone">Telefone:</label>
+        <input type="text" name="telefone" id="telefone" required>
+    
+        <label for="data_abertura">Data de Abertura:</label>
+        <input type="date" name="data_abertura" id="data_abertura" required>
+    
+        <button type="submit">Cadastrar Filial</button>
+    </form>
+
+    <a href="{% url 'control_painel' %}">Ver Filiais Cadastradas</a>
+{% endblock %}
+
+<footer>
+    <p>&copy; 2024 Stock Manager. Todos os direitos reservados.</p>
+</footer>

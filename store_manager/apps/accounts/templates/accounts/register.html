@@ -23,6 +23,15 @@
     <div class="register">
         <h2 class="title">Register</h2>
         <p class="message">Signup now and get full access to our app. </p>
+
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}

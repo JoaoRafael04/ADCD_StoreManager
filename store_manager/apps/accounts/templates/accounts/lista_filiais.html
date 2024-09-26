@@ -1,0 +1,29 @@
+<head></head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Stock Manager{% endblock %}</title>
+    {% load static %}  <!-- Carrega a biblioteca de arquivos estáticos -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+
+
+<body>
+    <header class="header">
+        <div class="content">
+          <ul class="nav">
+                <li><a href="{% url 'control_painel' %}">Voltar ao Painel</a></li>
+            </ul>
+        </div> <!-- content -->
+    </header>
+    <h1>Lista de Filiais</h1>
+    
+    <ul>
+        <p>Nome da filial | Endereço | Cidade | Estado | Telefone | Data de Abertura</p>
+        {% for filial in filiais %}
+            <li>{{ filial.nome }} | {{ filial.endereco }} | {{ filial.cidade }} | {{ filial.estado }} | {{ filial.telefone }} | {{ filial.data_abertura }}</li>
+        {% empty %}
+            <li>Nenhuma filial cadastrada.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'cadastrar_empresa' %}">Cadastrar nova filial</a>
+</body>
