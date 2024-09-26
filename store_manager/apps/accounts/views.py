@@ -18,7 +18,7 @@ def register(request):
             user.save()
             login(request, user)  # Loga o usuário imediatamente após o registro
             messages.success(request, 'Registration successful!')  # Mensagem de sucesso
-            return redirect('home')  # Redireciona para a página inicial
+            return redirect('control_painel')  # Redireciona para a página inicial
     else:
         form = UserRegistrationForm()
     return render(request, 'accounts/register.html', {'form': form})
@@ -31,7 +31,7 @@ def user_login(request):
             if user is not None:
                 login(request, user)
                 messages.success(request, 'Login successful!')  # Mensagem de sucesso
-                return redirect('home')  # Redireciona para a página inicial
+                return redirect('control_painel')  # Redireciona para a página inicial
             else:
                 form.add_error(None, "Invalid login credentials")
     else:
@@ -56,3 +56,10 @@ def reset_password(request):
         else:
             messages.error(request, 'No user with this email address.')  # Mensagem de erro
     return render(request, 'accounts/password_reset.html')
+
+from django.contrib.auth.decorators import login_required
+@login_required
+def control_painel_view(request):
+    return render(request, 'control_painel.html')
+
+
