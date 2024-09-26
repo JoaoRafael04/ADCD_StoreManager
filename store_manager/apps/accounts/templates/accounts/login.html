@@ -1,10 +1,38 @@
-{% extends "base.html" %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Stock Manager{% endblock %}</title>
+    {% load static %}  <!-- Carrega a biblioteca de arquivos estáticos -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+    <header class="header">
+        <div class="content">
+            <ul class="nav">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <!-- <li><a href="{% url 'password_reset' %}">Forgot Password</a></li> -->
+            </ul>
+        </div> <!-- content -->
+    </header>
 
 {% block content %}
-<h2>Login</h2>
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-</form>
+<div class="form">
+    <div class="login">
+        <h2 class="title">Login</h2>
+        <p class="message">Sign in to access the management panel.</p>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Login</button>
+            <p class="signup">Don't have an account? <a href="{% url 'register' %}">Sign up</a> </p>
+        </form>
+    </div>
+</div>
 {% endblock %}
+
+<footer>
+    <p>&copy; 2024 Stock Manager. Todos os direitos reservados.</p>
+</footer>

@@ -4,29 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Stock Manager{% endblock %}</title>
-    {% load static %}  <!-- Adicione esta linha -->
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {% load static %}  <!-- Carrega a biblioteca de arquivos estáticos -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
+    <header class="header">
+        <div class="content">
+            <ul class="nav">
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'register' %}">Register</a></li>
                 <li><a href="{% url 'login' %}">Login</a></li>
-                <li><a href="{% url 'password_reset' %}">Forgot Password</a></li>
+                <!-- <li><a href="{% url 'password_reset' %}">Forgot Password</a></li> -->
             </ul>
-        </nav>
+        </div> <!-- content -->
     </header>
-    
+
+    <main class="container-home">
+        <div class="text">
+            <h1>Bem-Vindo(a) ao ADCD</h1>
+            <p>
+                Simplifique o controle de estoque online e impulsione a eficiência com a ADCD Store Manager.<br>
+                Gerencie o fluxo de mercadorias, registre entradas e saídas e identifique quantidades. E não para por aí!<br>
+                Catalogue detalhes como tamanho, cor, peso, formato e mais, para garantir identificação instantânea.
+            </p>
+        </div>
+    </main>
+
+    <!-- Bloco de conteúdo, caso você tenha outras páginas que utilizem esse layout -->
     <div class="container">
         {% block content %}
-        <!-- Child templates will insert their content here -->
         {% endblock %}
     </div>
-    
+
     <footer>
-        <p>&copy; 2024 Stock Manager. All rights reserved.</p>
+        <p>&copy; 2024 Stock Manager. Todos os direitos reservados.</p>
     </footer>
 </body>
 </html>
