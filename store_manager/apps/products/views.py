@@ -14,7 +14,6 @@ def adicionar_produto(request):
         unidade_medida = request.POST['unidade_medida']
         validade = request.POST['validade']
         
-        # Criar um novo objeto de produto
         novo_produto = Produtos.objects.create(
             nome=nome,
             marca=marca,
@@ -28,9 +27,9 @@ def adicionar_produto(request):
             validade=validade
         )
         
-        return redirect('lista_produtos')  # Redirecionar para uma lista de produtos, por exemplo
-
-    return render(request, 'products/adicionar_produto.html')  # Verifique o caminho do template
+        return redirect('lista_produtos')
+    
+    return render(request, 'products/adicionar_produto.html')
 
 def lista_produtos(request):
     produtos = Produtos.objects.all()
