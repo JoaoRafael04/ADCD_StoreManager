@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de Produtos</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+      }
+
+      h1 {
+        text-align: center;
+        color: #007bff;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #007bff;
+        color: white;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      tr:hover {
+        background-color: #ddd;
+      }
+
+      /* Estilização específica para a profundidade */
+      td.profundidade {
+        font-weight: bold;
+        color: #28a745; /* Verde para destacar profundidade */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Lista de Produtos</h1>
+
+    <a href="{% url 'adicionar_produto' %}">Adicionar Novo Produto</a>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Marca</th>
+          <th>Produção</th>
+          <th>Frete Grátis</th>
+          <th>Dimensões (A x L x P)</th>
+          <th>Unidade de Medida</th>
+          <th>Validade</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for produto in produtos %}
+        <tr>
+          <td>{{ produto.nome }}</td>
+          <td>{{ produto.marca }}</td>
+          <td>{{ produto.producao }}</td>
+          <td>{{ produto.frete_gratis|yesno:"Sim,Nao" }}</td>
+          <td>
+            {{ produto.altura }} x {{ produto.largura }} x
+            <span class="profundidade">{{ produto.profundidade }}</span>
+          </td>
+          <td>{{ produto.unidade_medida }}</td>
+          <td>{{ produto.validade }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="7">Nenhum produto cadastrado.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>
