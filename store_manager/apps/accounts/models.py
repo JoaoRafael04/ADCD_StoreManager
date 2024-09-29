@@ -19,8 +19,7 @@ class CustomUser(AbstractUser):
             RegexValidator(regex=r'^\d{11}$', message='CPF must be 11 digits')
         ]
     )
-    full_name = models.CharField(max_length=255) 
-    full_address = models.TextField()
+    full_Name = models.CharField(max_length=255)  
     phone_number = models.CharField(
         max_length=15, 
         validators=[validate_phone_number]  # Updated to use the custom validator
@@ -32,9 +31,12 @@ class CustomUser(AbstractUser):
     city = models.CharField(max_length=100)  
     state = models.CharField(max_length=100)  
     country = models.CharField(max_length=100, default='Brazil')  
-
+    
     # Set the email field as the unique identifier for the user
     email = models.EmailField(unique=True)
 
     USERNAME_FIELD = 'email'  
-    REQUIRED_FIELDS = ['username', 'cpf', 'phone_number', 'street', 'home_number', 'city', 'state', 'country']  
+    REQUIRED_FIELDS = ['username', 'full_Name' ,'cpf', 'phone_number', 'street', 'home_number', 'city', 'state', 'country'] 
+    
+    def get_full_name(self):
+        return self.full_Name or self.username 
