@@ -17,22 +17,6 @@ def company_detail(request, company_id):
     return render(request, 'company_detail.html', {'company': company, 'branches': branches})
 
 @login_required
-def branch_list(request, company_id):
-    # Fetch the company using the provided company_id
-    company = get_object_or_404(Company, id=company_id)
-    # Fetch branches related to this company
-    branches = Branch.objects.filter(company=company)
-
-    # Render the branch list template with the company and branches context
-    return render(request, 'branch_list.html', {'company': company, 'branches': branches})
-
-@login_required
-def branch_detail(request, branch_id):
-    # Get branch by ID and ensure the user owns the company this branch belongs to
-    branch = get_object_or_404(Branch, id=branch_id, company__user=request.user)
-    return render(request, 'branch_detail.html', {'branch': branch})
-
-@login_required
 def register_company(request):
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -61,6 +45,23 @@ def register_company(request):
         return redirect('company_list')
 
     return render(request, 'register_company.html')
+
+@login_required
+def branch_list(request, company_id):
+    # Fetch the company using the provided company_id and ensure the user owns it
+    company = get_object_or_404(Company, id=company_id, user=request.user)
+
+    # Fetch branches related to this company
+    branches = Branch.objects.filter(company=company)
+
+    # Render the branch list template with the company and branches context
+    return render(request, 'branch_list.html', {'company': company, 'branches': branches})
+
+@login_required
+def branch_detail(request, branch_id):
+    # Get branch by ID and ensure the user owns the company this branch belongs to
+    branch = get_object_or_404(Branch, id=branch_id, company__user=request.user)
+    return render(request, 'branch_detail.html', {'branch': branch})
 
 @login_required
 def register_branch(request, company_id=None):

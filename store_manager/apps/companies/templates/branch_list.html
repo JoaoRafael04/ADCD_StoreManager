@@ -12,23 +12,31 @@
     </a>
 </div>
 
-<ul>
+<ul class="list-group">
     {% for branch in branches %}
-        <li>
-            <a href="{% url 'branch_detail' branch.id %}">{{ branch.name }}</a>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <!-- Branch name, clickable for category list -->
+            <a href="{% url 'category_list' branch.id %}" class="text-decoration-none">
+                {{ branch.name }}
+            </a>
+
+            <!-- "Details" button aligned to the right side -->
+            <a href="{% url 'branch_detail' branch.id %}" class="btn btn-info btn-sm">
+                View Details
+            </a>
         </li>
     {% empty %}
         <li>No branches available for this company.</li>
     {% endfor %}
 </ul>
 
-<!-- Button to go to Menu -->
-<a href="{% url 'company_list' %}" class="btn btn-secondary">
+<!-- Button to go to Company List -->
+<a href="{% url 'company_list' %}" class="btn btn-secondary mt-3">
     Company list
 </a>
 
 <!-- Home button -->
-<a href="{% url 'menu' %}" class="btn btn-secondary">
+<a href="{% url 'menu' %}" class="btn btn-secondary mt-3">
     <i class="fas fa-home"></i> Menu
 </a>
 {% endblock %}

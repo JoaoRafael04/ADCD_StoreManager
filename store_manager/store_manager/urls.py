@@ -22,7 +22,8 @@ from django.views.generic import TemplateView
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
-    path('accounts/', include('apps.accounts.urls')),  # Accounts app routes
+    path('accounts/', include('apps.accounts.urls')),  # Include Accounts app routes
     path('menu/', TemplateView.as_view(template_name='menu.html'), name='menu'),
     path('companies/', include('apps.companies.urls')),  # Include companies app routes
+    path('products/', include('apps.products.urls')),  # Fix typo: 'produtcs' -> 'products'
 ]

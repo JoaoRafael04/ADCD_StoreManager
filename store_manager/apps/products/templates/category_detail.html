@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Category Detail: {{ category.name }}{% endblock %}
+
+{% block content %}
+<h1>Category Detail: {{ category.name }}</h1>
+
+<p><strong>Description:</strong> {{ category.description }}</p>
+
+<!-- Button to go back to Categories List -->
+<a href="{% url 'category_list' category.branch.id %}" class="btn btn-secondary">
+    Back to Categories List
+</a>
+
+<!-- Home button -->
+<a href="{% url 'menu' %}" class="btn btn-secondary">
+    <i class="fas fa-home"></i> Menu
+</a>
+{% endblock %}

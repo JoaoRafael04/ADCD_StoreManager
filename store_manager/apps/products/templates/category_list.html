@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Category List for {{ branch.name }}{% endblock %}
+
+{% block content %}
+<h1>Category List for {{ branch.name }}</h1>
+
+<!-- Button to Register New Category -->
+<div class="mb-3">
+    <a href="{% url 'register_category' branch.id %}" class="btn btn-primary">
+        Register New Category
+    </a>
+</div>
+
+<ul class="list-group">
+    {% for category in categories %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span>{{ category.name }}</span>
+
+            <!-- "Details" button -->
+            <a href="{% url 'category_detail' category.slug %}" class="btn btn-info btn-sm">
+                View Details
+            </a>
+                                            
+        </li>
+    {% empty %}
+        <li class="list-group-item">No categories available for this branch.</li>
+    {% endfor %}
+</ul>
+
+<!-- Button to go to Branch List -->
+<a href="{% url 'branch_list' branch.company.id %}" class="btn btn-secondary mt-3">
+    Back to Branch List
+</a>
+
+<!-- Home button -->
+<a href="{% url 'menu' %}" class="btn btn-secondary mt-3">
+    <i class="fas fa-home"></i> Menu
+</a>
+{% endblock %}

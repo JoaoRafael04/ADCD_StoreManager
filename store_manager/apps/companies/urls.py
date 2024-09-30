@@ -3,16 +3,11 @@ from . import views
 
 urlpatterns = [
     path('register/company/', views.register_company, name='register_company'),
-    path('register/branch/<int:company_id>/', views.register_branch, name='register_branch'),
-    
-    # Company list and detail
-    path('companies/', views.company_list, name='company_list'),
-    path('companies/register/', views.register_company, name='register_company'),
-    path('companies/<int:company_id>/branches/', views.branch_list, name='branch_list'),
+    path('companies/', views.company_list, name='company_list'),  # Company list
+    path('companies/<int:company_id>/detail/', views.company_detail, name='company_detail'),  # Company detail
+
+    # Branches
     path('companies/<int:company_id>/branches/register/', views.register_branch, name='register_branch'),  # Register branch
-    
-    
-    # Branch list and detail
-    path('branches/', views.branch_list, name='branch_list'),
-    path('branches/<int:branch_id>/', views.branch_detail, name='branch_detail'),
+    path('companies/<int:company_id>/branches/', views.branch_list, name='branch_list'),  # Branch list
+    path('branches/<int:branch_id>/detail/', views.branch_detail, name='branch_detail'),  # Branch detail
 ]

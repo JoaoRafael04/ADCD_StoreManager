@@ -1,4 +1,4 @@
-import requests
+""" import requests
 from django import forms
 from django.core.exceptions import ValidationError
 from .models import CustomUser
@@ -43,3 +43,4 @@ class UserRegistrationForm(forms.ModelForm):
                 raise ValidationError("Failed to validate CEP")
 
         return cleaned_data
+ """

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Company Details - {{ company.name }}{% endblock %}
+
+{% block content %}
+<h1>Company Details - {{ company.name }}</h1>
+
+<!-- Display company information -->
+<div class="company-details">
+    <p><strong>Sector:</strong> {{ company.sector }}</p>
+    <p><strong>Description:</strong> {{ company.description }}</p>
+    <p><strong>Email:</strong> <a href="mailto:{{ company.email }}">{{ company.email }}</a></p>
+    {% if company.photo %}
+        <p><strong>Photo:</strong></p>
+        <img src="{{ company.photo.url }}" alt="Photo of {{ company.name }}" style="max-width: 200px;">
+    {% endif %}
+</div>
+
+<hr>
+
+<!-- Display the company's branches -->
+<h2>Branches of {{ company.name }}</h2>
+<ul>
+    {% for branch in branches %}
+        <li>{{ branch.name }} - {{ branch.address }}</li>
+    {% empty %}
+        <li>No branches available for this company.</li>
+    {% endfor %}
+</ul>
+
+<!-- Button to go back to Company List -->
+<a href="{% url 'company_list' %}" class="btn btn-secondary">
+    Back to Company List
+</a>
+
+<!-- Home button -->
+<a href="{% url 'menu' %}" class="btn btn-secondary">
+    <i class="fas fa-home"></i> Menu
+</a>
+{% endblock %}

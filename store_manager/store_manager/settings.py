@@ -75,6 +75,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.accounts', # <-- Added accounts app
     'apps.companies', # <-- Added companies app
+    'apps.products', # <-- Added products app
 ]
 
 # Middleware
