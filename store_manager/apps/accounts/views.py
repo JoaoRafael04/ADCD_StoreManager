@@ -19,7 +19,7 @@ def register(request):
         email = request.POST.get('email')
         username = request.POST.get('username')
         password = request.POST.get('password')
-        full_name = request.POST.get('full_Name')
+        full_name = request.POST.get('full_name')  # Corrected to 'full_name'
         cpf = request.POST.get('cpf')
         phone_number = request.POST.get('phone_number')
         street = request.POST.get('street')
@@ -38,7 +38,7 @@ def register(request):
             user = CustomUser(
                 email=email,
                 username=username,
-                full_Name=full_name,
+                full_name=full_name,  # Corrected here
                 cpf=cpf,
                 phone_number=phone_number,
                 street=street,
