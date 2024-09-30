@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Menu - ADCD - StoreManager{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-3">
+        <h3>Welcome to ADCD - StoreManager</h3>
+        <div class="list-group">
+            <a href="{% url 'company_list' %}" class="list-group-item list-group-item-action">Company</a>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div class="d-flex justify-content-end">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="userProfile" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{ request.user.get_full_name }}'s Profile
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="userProfile">
+                    <li><a class="dropdown-item" href="{% url 'logout' %}">Log Off</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-4">
+            {% block inner_content %}
+            <!-- Additional content will go here -->
+            {% endblock %}
+        </div>
+    </div>
+</div>
+{% endblock %}

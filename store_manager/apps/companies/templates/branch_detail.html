@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Branch Details - {{ branch.name }}{% endblock %}
+
+{% block content %}
+<h1>Branch Details - {{ branch.name }}</h1>
+
+<div class="card">
+    <div class="card-header">
+        <h3>{{ branch.name }}</h3>
+    </div>
+    <div class="card-body">
+        <p><strong>CNPJ:</strong> {{ branch.cnpj }}</p>
+        <p><strong>Address:</strong> {{ branch.address }}</p>
+        <p><strong>Phone Number:</strong> {{ branch.phone_number }}</p>
+        <p><strong>Email:</strong> <a href="mailto:{{ branch.email }}">{{ branch.email }}</a></p>
+        <p><strong>Website:</strong> <a href="{{ branch.website }}" target="_blank">{{ branch.website }}</a></p>
+        <p><strong>Description:</strong> {{ branch.description }}</p>
+    </div>
+</div>
+
+<!-- Button to go to Category List for this Branch -->
+<a href="{% url 'category_list' branch.id %}" class="btn btn-primary mt-3">
+    View Categories for {{ branch.name }}
+</a>
+
+<!-- Back to Branch List Button -->
+<a href="{% url 'branch_list' branch.company.id %}" class="btn btn-secondary mt-3">
+    Back to Branch List
+</a>
+
+<!-- Home button -->
+<a href="{% url 'menu' %}" class="btn btn-secondary mt-3">
+    <i class="fas fa-home"></i> Menu
+</a>
+{% endblock %}
