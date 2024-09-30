@@ -1,2 +1,3 @@
 venv/
-/home/ricobrto/Documentos/ADCD_StoreManager0/ADCD_StoreManager/store_manager/apps/accounts/forms.py
+store_manager/apps/accounts/forms.py
+.env
