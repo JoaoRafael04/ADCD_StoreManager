@@ -40,7 +40,6 @@ jobs:
 
       - name: Zip artifact for deployment
         run: |
-          run: |
           cd store_manager/
           zip release.zip ./* -r
           cd ..
