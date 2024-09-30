@@ -25,8 +25,12 @@ main {
     padding: 20px;
 }
 
-h2 {
+h1, h2 {
     color: #333;
+}
+
+h1 {
+    margin-bottom: 20px; /* Space below H1 elements */
 }
 
 form {
@@ -59,6 +63,26 @@ button:hover {
     background: #0056b3;
 }
 
+/* Home button styles */
+.home-button {
+    display: inline-block;
+    padding: 10px 15px;
+    margin-top: 10px;
+    background-color: #007BFF; /* Same color as other buttons */
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.home-button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+.home-button i {
+    margin-right: 5px; /* Space between icon and text */
+}
+
 footer {
     text-align: center;
     padding: 20px;
@@ -67,4 +91,17 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
+    margin-top: 20px; /* Add some space above footer */
+}
+
+/* Additional media query for responsive design */
+@media (max-width: 768px) {
+    nav a {
+        margin: 0 10px; /* Reduce margin on smaller screens */
+    }
+
+    .home-button {
+        width: 100%; /* Full width on small screens */
+        margin-top: 15px; /* Add margin for spacing */
+    }
 }

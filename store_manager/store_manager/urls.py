@@ -24,4 +24,5 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('accounts/', include('apps.accounts.urls')),  # Accounts app routes
     path('menu/', TemplateView.as_view(template_name='menu.html'), name='menu'),
+    path('companies/', include('apps.companies.urls')),  # Include companies app routes
 ]

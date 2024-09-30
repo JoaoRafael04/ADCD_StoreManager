@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Branch List for {{ company.name }}{% endblock %}
+
+{% block content %}
+<h1>Branch List for {{ company.name }}</h1>
+
+<!-- Button to Register New Branches -->
+<div class="mb-3">
+    <a href="{% url 'register_branch' company.id %}" class="btn btn-primary">
+        Register New Branch
+    </a>
+</div>
+
+<ul>
+    {% for branch in branches %}
+        <li>
+            <a href="{% url 'branch_detail' branch.id %}">{{ branch.name }}</a>
+        </li>
+    {% empty %}
+        <li>No branches available for this company.</li>
+    {% endfor %}
+</ul>
+
+<!-- Button to go to Menu -->
+<a href="{% url 'company_list' %}" class="btn btn-secondary">
+    Company list
+</a>
+
+<!-- Home button -->
+<a href="{% url 'menu' %}" class="btn btn-secondary">
+    <i class="fas fa-home"></i> Menu
+</a>
+{% endblock %}

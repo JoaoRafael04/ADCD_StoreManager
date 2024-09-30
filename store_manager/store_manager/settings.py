@@ -73,7 +73,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'apps.accounts',  # <-- Added accounts app
+    'apps.accounts', # <-- Added accounts app
+    'apps.companies', # <-- Added companies app
 ]
 
 # Middleware
