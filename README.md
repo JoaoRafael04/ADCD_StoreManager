@@ -41,19 +41,53 @@ ADCD StoreManager é uma solução completa e intuitiva para gerenciamento de es
 
 ## Entregas
 
-### Entrega 1
+<details>
+<summary>Entrega 1</summary>
+<ul>
+  <li>
+<a href="Imagens/historias_backlog.png">Imagem do Backlog no Jira</a>
+</li>
+  
+<li>
+    <a  href="Imagens/Sprint1.png"
+      >Imagem do Board no Jira</a
+    >
+  </li>
 
-- **Quadro de Histórias**
+  <li>
+    <a  href="https://www.youtube.com/watch?v=9WM5FAH4sw8"
+      >Screencast</a
+    >
+  </li>
+</ul>
+</details>
 
-![Quadro de Histórias](Imagens/Sprint1.png)
+<details>
+<summary>Entrega 2</summary>
+<ul>
+  <li>
+<a href="Imagens/historias_backlog_2.png">Imagem do Backlog no Jira</a>
+</li>
+  
+<li>
+    <a  href="Imagens/sprint2.png"
+      >Imagem do Board no Jira</a
+    >
+  </li>
 
-- **Link do jira e Print das Historias**
+  <li>
+    Screencast
+  </li>
+</ul>
+</details>
+
+## Links
+
+- **Link do Jira**
 
 A descrição das historias está no Jira.
 
 https://cesar-team-omws9jcc.atlassian.net/jira/software/projects/ADCD/boards/34/backlog
-
-![Quadro de Histórias](Imagens/historias_backlog.png)
 
 - **Link do Figma**
     
@@ -63,9 +97,6 @@ https://www.figma.com/design/h8iUL4X9aDi0fdhbmwFAkm/PROJETO-BAIXA-FIDELIDADE?nod
     
 [https://excalidraw.com/#room=c5d3c64e7ba02faf097d,kZaIXbL52UexlnZmBIus1A](https://excalidraw.com/#room=c5d3c64e7ba02faf097d,kZaIXbL52UexlnZmBIus1A)
 
-- **Video das Historias**
-
-https://www.youtube.com/watch?v=9WM5FAH4sw8
 
 ## 📄 Docs
 

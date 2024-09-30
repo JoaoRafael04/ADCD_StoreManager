@@ -3,6 +3,7 @@ from django.db import models
 from django.core.validators import RegexValidator, ValidationError
 import phonenumbers
 
+# Validador de número de telefone
 def validate_phone_number(value):
     try:
         phone_number = phonenumbers.parse(value, None)
@@ -12,6 +13,7 @@ def validate_phone_number(value):
         raise ValidationError("Enter a valid phone number.")
 
 class CustomUser(AbstractUser):
+    # Campo CPF
     cpf = models.CharField(
         max_length=11, 
         unique=True, 
@@ -19,24 +21,44 @@ class CustomUser(AbstractUser):
             RegexValidator(regex=r'^\d{11}$', message='CPF must be 11 digits')
         ]
     )
-    full_Name = models.CharField(max_length=255)  
+    
+    # Nome completo
+    full_Name = models.CharField(max_length=255)
+    
+    # Número de telefone
     phone_number = models.CharField(
         max_length=15, 
-        validators=[validate_phone_number]  # Updated to use the custom validator
+        validators=[validate_phone_number]  # Validador customizado para telefone
     )
-    
-    # Address fields
-    street = models.CharField(max_length=255)  
-    home_number = models.CharField(max_length=10)  
-    city = models.CharField(max_length=100)  
-    state = models.CharField(max_length=100)  
-    country = models.CharField(max_length=100, default='Brazil')  
-    
-    # Set the email field as the unique identifier for the user
+
+    # Campos de endereço
+    street = models.CharField(max_length=255)
+    home_number = models.CharField(max_length=10)
+    city = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
+    country = models.CharField(max_length=100, default='Brazil')
+
+    # Definir email como identificador único
     email = models.EmailField(unique=True)
 
-    USERNAME_FIELD = 'email'  
-    REQUIRED_FIELDS = ['username', 'full_Name' ,'cpf', 'phone_number', 'street', 'home_number', 'city', 'state', 'country'] 
-    
+    # Evitar conflito nos relacionamentos reversos com 'groups' e 'user_permissions'
+    groups = models.ManyToManyField(
+        'auth.Group', 
+        related_name='customuser_set', 
+        blank=True, 
+        help_text="The groups this user belongs to."
+    )
+    user_permissions = models.ManyToManyField(
+        'auth.Permission', 
+        related_name='customuser_set', 
+        blank=True, 
+        help_text="Specific permissions for this user."
+    )
+
+    # Configurar campo de autenticação
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username', 'full_Name', 'cpf', 'phone_number', 'street', 'home_number', 'city', 'state', 'country']
+
+    # Método para obter nome completo
     def get_full_name(self):
-        return self.full_Name or self.username 
+        return self.full_Name or self.username

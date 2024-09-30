@@ -14,7 +14,7 @@
         <div class="d-flex justify-content-end">
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="userProfile" data-bs-toggle="dropdown" aria-expanded="false">
-                    {{ request.user.get_full_name }}'s Profile
+                    {{ request.user.get_full_Name }}'s Profile
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="userProfile">
                     <li><a class="dropdown-item" href="{% url 'logout' %}">Log Off</a></li>
