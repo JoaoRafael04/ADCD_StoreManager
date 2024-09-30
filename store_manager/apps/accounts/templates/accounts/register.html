@@ -13,56 +13,69 @@
         </div>
     {% endif %}
 
-    <form method="POST" action="{% url 'register' %}">  <!-- Ensure the URL matches your view -->
+    <form method="POST" action="{% url 'register' %}">
         {% csrf_token %}
+        
         <div class="mb-3">
             <label for="email" class="form-label">Email address</label>
             <input type="email" class="form-control" id="email" name="email" required>
         </div>
+        
         <div class="mb-3">
             <label for="username" class="form-label">Username</label>
             <input type="text" class="form-control" id="username" name="username" required>
         </div>
+        
         <div class="mb-3">
-            <label for="full_name" class="form-label">Full Name</label>
-            <input type="text" class="form-control" id="full_name" name="full_name" required> <!-- Updated to 'full_name' -->
+            <label for="full_Name" class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="full_Name" name="full_Name" required>
         </div>
+        
         <div class="mb-3">
             <label for="cpf" class="form-label">CPF</label>
-            <input type="text" class="form-control" id="cpf" name="cpf">
+            <input type="text" class="form-control" id="cpf" name="cpf" pattern="\d{11}" title="CPF must be 11 digits" required>
         </div>
+        
         <div class="mb-3">
             <label for="phone_number" class="form-label">Phone Number</label>
-            <input type="text" class="form-control" id="phone_number" name="phone_number">
+            <input type="text" class="form-control" id="phone_number" name="phone_number" required>
         </div>
+        
         <div class="mb-3">
             <label for="street" class="form-label">Street</label>
-            <input type="text" class="form-control" id="street" name="street">
+            <input type="text" class="form-control" id="street" name="street" required>
         </div>
+        
         <div class="mb-3">
             <label for="home_number" class="form-label">Home Number</label>
-            <input type="text" class="form-control" id="home_number" name="home_number">
+            <input type="text" class="form-control" id="home_number" name="home_number" required>
         </div>
+        
         <div class="mb-3">
             <label for="city" class="form-label">City</label>
-            <input type="text" class="form-control" id="city" name="city">
+            <input type="text" class="form-control" id="city" name="city" required>
         </div>
+        
         <div class="mb-3">
             <label for="state" class="form-label">State</label>
-            <input type="text" class="form-control" id="state" name="state">
+            <input type="text" class="form-control" id="state" name="state" required>
         </div>
+        
         <div class="mb-3">
             <label for="country" class="form-label">Country</label>
-            <input type="text" class="form-control" id="country" name="country">
+            <input type="text" class="form-control" id="country" name="country" required>
         </div>
+        
         <div class="mb-3">
             <label for="password" class="form-label">Password</label>
             <input type="password" class="form-control" id="password" name="password" required>
         </div>
+        
         <div class="mb-3">
             <label for="confirm_password" class="form-label">Confirm Password</label>
             <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
         </div>
+        
         <button type="submit" class="btn btn-primary">Register</button>
     </form>
 {% endblock %}

@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -86,7 +87,7 @@ MIDDLEWARE = [
 # Other configurations (like TEMPLATES, WSGI_APPLICATION, etc.) would follow here...
 
 ROOT_URLCONF = "store_manager.urls"
-
+AUTH_USER_MODEL = 'accounts.Customuser'
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
