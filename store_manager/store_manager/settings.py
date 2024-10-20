@@ -12,58 +12,51 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
-from dotenv import load_dotenv  # For .env file loading
+from dotenv import load_dotenv
 
-# Load environment variables from .env file
-load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Load environment variables from .env file
+load_dotenv(BASE_DIR / '.env')
+
 # Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
+TARGET_ENV = os.getenv('TARGET_ENV')
+NOT_PROD = not TARGET_ENV.lower().startswith('prod')
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-&!br)3q%i6r9rkbt3-g8k*=^lco9v6uy^p+-p5ymy!e!f+^t$p")
+if NOT_PROD:
+    # Development settings
+    DEBUG = True
+    SECRET_KEY = 'django-insecure-&!br)3q%i6r9rkbt3-g8k*=^lco9v6uy^p+-p5ymy!e!f+^t$p'
+    ALLOWED_HOSTS = []
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+else:
+    # Production settings
+    SECRET_KEY = os.getenv('SECRET_KEY')
+    DEBUG = os.getenv('DEBUG', '0').lower() in ['true', 't', '1']
+    ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
+    CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS').split(' ')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", "True") == "True"
+    SECURE_SSL_REDIRECT = os.getenv('SECURE_SSL_REDIRECT', '0').lower() in ['true', 't', '1']
+    if SECURE_SSL_REDIRECT:
+        SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
-
-import os
-
-# Email Backend Configuration (for password resets)
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-# Gmail Configuration
-if os.getenv('EMAIL_PROVIDER') == 'gmail':
-    EMAIL_HOST = 'smtp.gmail.com'
-    EMAIL_PORT = 587
-    EMAIL_USE_TLS = True
-    EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'your-email@gmail.com')
-    EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'your-password')
-
-# Yahoo Configuration
-elif os.getenv('EMAIL_PROVIDER') == 'yahoo':
-    EMAIL_HOST = 'smtp.mail.yahoo.com'
-    EMAIL_PORT = 587
-    EMAIL_USE_TLS = True
-    EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'your-email@yahoo.com')
-    EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'your-password')
-
-# Outlook Configuration
-elif os.getenv('EMAIL_PROVIDER') == 'outlook':
-    EMAIL_HOST = 'smtp-mail.outlook.com'
-    EMAIL_PORT = 587
-    EMAIL_USE_TLS = True
-    EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'your-email@outlook.com')
-    EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'your-password')
-
-# Password Reset Settings
-PASSWORD_RESET_TIMEOUT_DAYS = 1  # Link expiry period (1 day)
-PASSWORD_RESET_SUBJECT_TEMPLATE_NAME = 'accounts/password_reset_subject.txt'
-PASSWORD_RESET_EMAIL_TEMPLATE_NAME = 'accounts/password_reset_email.html'
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ.get('adcd-database'),
+            'HOST': os.environ.get('adcd-database.postgres.database.azure.com'),
+            'USER': os.environ.get('adcd'),
+            'PASSWORD': os.environ.get('Adfghj24'),
+            'OPTIONS': {'sslmode': 'require'},
+        }
+    }
 
 # Application definition
 INSTALLED_APPS = [
@@ -73,14 +66,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'apps.accounts', # <-- Added accounts app
-    'apps.companies', # <-- Added companies app
-    'apps.products', # <-- Added products app
+    'apps.accounts',  # <-- Added accounts app
+    'apps.companies',  # <-- Added companies app
+    'apps.products',  # <-- Added products app
+    'whitenoise.runserver_nostatic',
+    'apps.core',
 ]
 
 # Middleware
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -89,24 +85,14 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-
-# Correios API URL for Address Validation
-CORREIOS_API_URL = "https://viacep.com.br/ws/"
-
-# Custom user model
-AUTH_USER_MODEL = 'accounts.CustomUser' # Use your custom user model if implemented
-
-# Authentication backends (default Django model backend)
-AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-)
+# Other configurations (like TEMPLATES, WSGI_APPLICATION, etc.) would follow here...
 
 ROOT_URLCONF = "store_manager.urls"
-
+AUTH_USER_MODEL = 'accounts.Customuser'
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "templates"],  # Added templates directory
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -120,14 +106,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "store_manager.wsgi.application"
-
-# Database Configuration (SQLite)
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -151,9 +129,15 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
+# STATIC_URL = "static/"
+STATIC_URL = os.environ.get('DJANGO_STATIC_URL', "/static/")
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_STORAGE = ('whitenoise.storage.CompressedManifestStaticFilesStorage')
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

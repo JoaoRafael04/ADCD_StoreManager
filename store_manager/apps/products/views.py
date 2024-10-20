@@ -18,7 +18,6 @@ def category_list(request, branch_id):
 
 
 
-
 @login_required
 def category_detail(request, slug):
     try:

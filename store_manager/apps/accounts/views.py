@@ -11,7 +11,7 @@ def home(request):
 
 def logoff(request):
     logout(request)
-    messages.success(request, 'You have been logged off.')
+    messages.success(request, 'Você foi desconectado!')
     return redirect('home')
 
 def register(request):
@@ -30,7 +30,7 @@ def register(request):
 
         # Basic validation
         if not email or not username or not password:
-            messages.error(request, 'Please fill all required fields.')
+            messages.error(request, 'Por favor preencha todos os campos obrigatórios.')
             return render(request, 'accounts/register.html')
 
         # Create user
