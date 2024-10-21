@@ -1,0 +1,11 @@
+{% extends 'menu.html' %}
+
+{% block inner_content %}
+<h2>Delete Branch</h2>
+<p>Are you sure you want to delete the branch "<strong>{{ branch.name }}</strong>"?</p>
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="{% url 'branch_list' branch.company.id %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

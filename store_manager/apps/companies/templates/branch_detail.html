@@ -19,6 +19,12 @@
     </div>
 </div>
 
+<!-- Edit and Delete Options -->
+<div class="edit-delete-options mt-3">
+    <a href="{% url 'edit_branch' branch.id %}" class="btn btn-primary">Edit Branch</a>
+    <a href="{% url 'delete_branch' branch.id %}" class="btn btn-danger">Delete Branch</a>
+</div>
+
 <!-- Button to go to Category List for this Branch -->
 <a href="{% url 'category_list' branch.id %}" class="btn btn-primary mt-3">
     View Categories for {{ branch.name }}

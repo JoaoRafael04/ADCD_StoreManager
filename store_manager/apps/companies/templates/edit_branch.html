@@ -1,0 +1,46 @@
+{% extends 'menu.html' %}
+
+{% block inner_content %}
+<h2>Edit Branch</h2>
+<form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" name="name" class="form-control" value="{{ branch.name }}" required>
+    </div>
+    <div class="form-group">
+        <label for="cnpj">CNPJ:</label>
+        <input type="text" name="cnpj" class="form-control" value="{{ branch.cnpj }}" required>
+    </div>
+    <div class="form-group">
+        <label for="address">Address:</label>
+        <textarea name="address" class="form-control" required>{{ branch.address }}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="phone_number">Phone:</label>
+        <input type="text" name="phone_number" class="form-control" value="{{ branch.phone_number }}" required>
+    </div>
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" name="email" class="form-control" value="{{ branch.email }}" required>
+    </div>
+    <div class="form-group">
+        <label for="website">Website:</label>
+        <input type="url" name="website" class="form-control" value="{{ branch.website }}" required>
+    </div>
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea name="description" class="form-control" required>{{ branch.description }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Update Branch</button>
+    <a href="{% url 'branch_detail' branch.id %}" class="btn btn-secondary mt-3">Cancel</a>
+</form>
+
+{% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}

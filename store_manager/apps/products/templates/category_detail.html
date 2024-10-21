@@ -7,13 +7,19 @@
 
 <p><strong>Description:</strong> {{ category.description }}</p>
 
+<!-- Edit and Delete Options -->
+<div class="edit-delete-options mt-3">
+    <a href="{% url 'edit_category' category.slug %}" class="btn btn-primary">Edit Category</a>
+    <a href="{% url 'delete_category' category.slug %}" class="btn btn-danger">Delete Category</a>
+</div>
+
 <!-- Button to go back to Categories List -->
-<a href="{% url 'category_list' category.branch.id %}" class="btn btn-secondary">
+<a href="{% url 'category_list' category.branch.id %}" class="btn btn-secondary mt-3">
     Back to Categories List
 </a>
 
 <!-- Home button -->
-<a href="{% url 'menu' %}" class="btn btn-secondary">
+<a href="{% url 'menu' %}" class="btn btn-secondary mt-3">
     <i class="fas fa-home"></i> Menu
 </a>
 {% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Category - {{ category.name }}{% endblock %}
+
+{% block content %}
+<h1>Edit Category - {{ category.name }}</h1>
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" name="name" class="form-control" value="{{ category.name }}" required>
+    </div>
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea name="description" class="form-control">{{ category.description }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Update Category</button>
+</form>
+<a href="{% url 'category_detail' category.id %}" class="btn btn-secondary mt-3">Cancel</a>
+{% endblock %}
