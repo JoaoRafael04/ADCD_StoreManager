@@ -13,10 +13,14 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+from dotenv import load_dotenv
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Load environment variables from .env file
+load_dotenv(BASE_DIR / '.env')
 
 # Load environment variables from .env file
 load_dotenv(BASE_DIR / '.env')
@@ -77,6 +81,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -86,12 +91,15 @@ MIDDLEWARE = [
 ]
 
 # Other configurations (like TEMPLATES, WSGI_APPLICATION, etc.) would follow here...
+# Other configurations (like TEMPLATES, WSGI_APPLICATION, etc.) would follow here...
 
 ROOT_URLCONF = "store_manager.urls"
+AUTH_USER_MODEL = 'accounts.Customuser'
 AUTH_USER_MODEL = 'accounts.Customuser'
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [BASE_DIR / "templates"],
         "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
