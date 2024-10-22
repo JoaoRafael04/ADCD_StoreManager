@@ -18,6 +18,14 @@
 
 <hr>
 
+<!-- Edit and Delete Options -->
+<div class="edit-delete-options">
+    <a href="{% url 'edit_company' company.id %}" class="btn btn-primary">Edit Company</a>
+    <a href="{% url 'delete_company' company.id %}" class="btn btn-danger">Delete Company</a>
+</div>
+
+<hr>
+
 <!-- Display the company's branches -->
 <h2>Branches of {{ company.name }}</h2>
 <ul>

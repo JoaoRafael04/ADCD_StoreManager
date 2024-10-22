@@ -1,11 +1,11 @@
-{% extends 'base.html' %}
+    {% extends 'base.html' %}
 
-{% block title %}Home - ADCD - StoreManager{% endblock %}
+    {% block title %}Home - ADCD - StoreManager{% endblock %}
 
-{% block content %}
-    <div class="text-center">
-        <h1>Welcome to ADCD - StoreManager</h1>
-        <p>Manage your store efficiently and easily.</p>
-        <a href="{% url 'register' %}" class="btn btn-primary">Get Started</a>
-    </div>
-{% endblock %}
+    {% block content %}
+        <div class="text-center">
+            <h1>Welcome to ADCD - StoreManager</h1>
+            <p>Manage your store efficiently and easily.</p>
+            <a href="{% url 'register' %}" class="btn btn-primary">Get Started</a>
+        </div>
+    {% endblock %}

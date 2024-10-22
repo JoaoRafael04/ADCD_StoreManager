@@ -13,10 +13,14 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+from dotenv import load_dotenv
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Load environment variables from .env file
+load_dotenv(BASE_DIR / '.env')
 
 # Load environment variables from .env file
 load_dotenv(BASE_DIR / '.env')
@@ -50,10 +54,10 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.environ.get('DBNAME'),
-            'HOST': os.environ.get('DBHOST'),
-            'USER': os.environ.get('DBUSER'),
-            'PASSWORD': os.environ.get('DBPASS'),
+            'NAME': os.environ.get('adcd-database'),
+            'HOST': os.environ.get('adcd-database.postgres.database.azure.com'),
+            'USER': os.environ.get('adcd'),
+            'PASSWORD': os.environ.get('Adfghj24'),
             'OPTIONS': {'sslmode': 'require'},
         }
     }
@@ -69,12 +73,14 @@ INSTALLED_APPS = [
     'apps.accounts',  # <-- Added accounts app
     'apps.companies',  # <-- Added companies app
     'apps.products',  # <-- Added products app
-    "whitenoise.runserver_nostatic",
+    'whitenoise.runserver_nostatic',
+    'apps.core',
 ]
 
 # Middleware
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -85,12 +91,15 @@ MIDDLEWARE = [
 ]
 
 # Other configurations (like TEMPLATES, WSGI_APPLICATION, etc.) would follow here...
+# Other configurations (like TEMPLATES, WSGI_APPLICATION, etc.) would follow here...
 
 ROOT_URLCONF = "store_manager.urls"
+AUTH_USER_MODEL = 'accounts.Customuser'
 AUTH_USER_MODEL = 'accounts.Customuser'
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [BASE_DIR / "templates"],
         "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -105,14 +114,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "store_manager.wsgi.application"
-
-# Database Configuration (SQLite)
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -141,6 +142,10 @@ STATIC_URL = os.environ.get('DJANGO_STATIC_URL', "/static/")
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_STORAGE = ('whitenoise.storage.CompressedManifestStaticFilesStorage')
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

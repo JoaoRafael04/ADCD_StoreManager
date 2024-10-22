@@ -86,4 +86,3 @@ jobs:
         with:
           app-name: 'ADCD-StoreManager'
           slot-name: 'Production'
-          
