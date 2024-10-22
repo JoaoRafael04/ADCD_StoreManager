@@ -1,60 +1,56 @@
+# myapp/tests.py
 from django.test import TestCase
-from .forms import UserRegistrationForm
-from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
+from .models import CustomUser
 
-class UserRegistrationFormTest(TestCase):
-    def test_valid_form(self):
-        form_data = {
-            'full_name': 'John Doe',
-            'cpf': '12345678900',
-            'cep': '01001000',
-            'street': 'Main Street',
-            'home_number': '100',
-            'city': 'São Paulo',
-            'state': 'SP',
+class CustomUserTestCase(TestCase):
+    
+    def setUp(self):
+        # This method will run before each test
+        self.valid_data = {
+            'username': 'testuser',
+            'email': 'testuser@example.com',
+            'full_Name': 'Test User',
+            'cpf': '12345678901',  # Replace with a valid CPF for tests
+            'phone_number': '+5511999999999',  # Replace with a valid phone number for tests
+            'street': 'Test Street',
+            'home_number': '123',
+            'city': 'Test City',
+            'state': 'Test State',
             'country': 'Brazil',
-            'email': 'johndoe@example.com',
-            'phone_number': '11999999999',
-            'password': 'password123',
-            'confirm_password': 'password123'
         }
-        form = UserRegistrationForm(data=form_data)
-        self.assertTrue(form.is_valid())
 
-    def test_invalid_cep(self):
-        form_data = {
-            'full_name': 'John Doe',
-            'cpf': '12345678900',
-            'cep': '99999999',  # Invalid CEP
-            'street': '',
-            'home_number': '100',
-            'city': '',
-            'state': '',
-            'country': '',
-            'email': 'johndoe@example.com',
-            'phone_number': '11999999999',
-            'password': 'password123',
-            'confirm_password': 'password123'
-        }
-        form = UserRegistrationForm(data=form_data)
-        self.assertFalse(form.is_valid())
-        self.assertIn('cep', form.errors)
+    def test_create_user(self):
+        user = CustomUser(**self.valid_data)
+        user.set_password('password123')  # Set the password
+        user.save()
+        self.assertIsInstance(user, CustomUser)
+        self.assertEqual(user.username, 'testuser')
+        self.assertEqual(user.email, 'testuser@example.com')
 
-    def test_password_mismatch(self):
-        form_data = {
-            'full_name': 'John Doe',
-            'cpf': '12345678900',
-            'cep': '01001000',
-            'street': 'Main Street',
-            'home_number': '100',
-            'city': 'São Paulo',
-            'state': 'SP',
-            'country': 'Brazil',
-            'email': 'johndoe@example.com',
-            'phone_number': '11999999999',
-            'password': 'password123',
-            'confirm_password': 'differentpassword'
-        }
-        form = UserRegistrationForm(data=form_data)
-        self.assertFalse(form.is_valid())
-        self.assertIn('password', form.errors)
+    def test_cpf_unique_constraint(self):
+        CustomUser.objects.create(**self.valid_data)  # Create first user
+        with self.assertRaises(ValidationError):
+            duplicate_user = CustomUser(**self.valid_data)  # Attempt to create a user with the same CPF
+            duplicate_user.clean_fields()  # This will raise the ValidationError
+
+    def test_invalid_cpf(self):
+        invalid_data = self.valid_data.copy()
+        invalid_data['cpf'] = 'invalid_cpf'  # Set an invalid CPF
+        user = CustomUser(**invalid_data)
+        with self.assertRaises(ValidationError):
+            user.clean_fields()  # Validate the user, which should raise ValidationError
+
+    def test_phone_number_validation(self):
+        # Test valid phone number
+        user = CustomUser(**self.valid_data)
+        user.phone_number = 'invalid_phone'
+        with self.assertRaises(ValidationError):
+            user.clean_fields()  # Validate the user, which should raise ValidationError
+
+    def test_get_full_name(self):
+        user = CustomUser(**self.valid_data)
+        user.set_password('password123')  # Set the password
+        user.save()
+        self.assertEqual(user.get_full_name(), 'Test User')
+

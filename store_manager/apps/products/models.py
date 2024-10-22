@@ -6,10 +6,11 @@ class Category(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
     branch = models.ForeignKey(Branch, on_delete=models.CASCADE)
-    slug = models.SlugField(unique=True, blank=True)  # Novo campo
+    slug = models.SlugField(unique=True, blank=True)
 
     def save(self, *args, **kwargs):
-        if not self.slug:
+        # Atualizar o slug sempre que o nome for modificado
+        if not self.slug or self.name != Category.objects.filter(id=self.id).values_list('name', flat=True).first():
             self.slug = slugify(self.name)
         super(Category, self).save(*args, **kwargs)
 
@@ -18,6 +19,10 @@ class Category(models.Model):
 class Subcategory(models.Model):
     name = models.CharField(max_length=100)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
 
 class Product(models.Model):
     name = models.CharField(max_length=100)

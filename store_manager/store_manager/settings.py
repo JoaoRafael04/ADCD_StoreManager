@@ -95,7 +95,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "store_manager.urls"
 AUTH_USER_MODEL = 'accounts.Customuser'
-AUTH_USER_MODEL = 'accounts.Customuser'
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
