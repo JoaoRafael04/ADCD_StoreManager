@@ -32,10 +32,11 @@ jobs:
       
       - name: Tests
         run: |
+          cd store_manager/
           python manage.py test apps.accounts.tests
           python manage.py test apps.companies.tests
           python manage.py test apps.products.tests
-          
+
       - name: Cleaning testing files
         run: |
           cd store_manager/
