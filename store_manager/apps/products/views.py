@@ -18,7 +18,6 @@ def category_list(request, branch_id):
 
 
 
-
 @login_required
 def category_detail(request, slug):
     try:
@@ -69,3 +68,38 @@ def register_category(request, branch_id):
         # Display the form if the request method is GET
         branch = get_object_or_404(Branch, id=branch_id, company__user=request.user)
         return render(request, 'register_category.html', {'branch': branch, 'companies': user_companies})
+
+@login_required
+def edit_category(request, slug):
+    category = get_object_or_404(Category, slug=slug)
+
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        description = request.POST.get('description')
+
+        # Validate fields
+        if not name or not description:
+            messages.error(request, 'Please fill in all required fields.')
+            return render(request, 'edit_category.html', {'category': category})
+
+        # Update the category
+        category.name = name
+        category.description = description
+        category.save()
+
+        messages.success(request, 'Category updated successfully!')
+        return redirect('category_detail', slug=category.slug)  # Use slug here
+
+    return render(request, 'edit_category.html', {'category': category})
+
+@login_required
+def delete_category(request, slug):
+    category = get_object_or_404(Category, slug=slug)
+    branch_id = category.branch.id  # Get the branch ID from the category
+
+    if request.method == 'POST':
+        category.delete()
+        messages.success(request, 'Category deleted successfully!')
+        return redirect('category_list', branch_id=branch_id)  # Pass the branch_id here
+
+    return render(request, 'delete_category.html', {'category': category})

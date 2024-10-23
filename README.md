@@ -76,19 +76,14 @@ ADCD StoreManager é uma solução completa e intuitiva para gerenciamento de es
   </li>
 
   <li>
-    <a  href="https://www.youtube.com/watch?v=eyRat3ko0qcScreencast"
-      >Screencast</a
-    >
-    
+    Screencast
   </li>
 </ul>
 </details>
 
-## Links
+<summary>Entrega 2</summary>
 
-- **Link do Deploy na Azure**
-  
-https://adcd-storemanager-cjhgdddkfac0hxes.brazilsouth-01.azurewebsites.net/
+## Links
 
 - **Link do Jira**
 

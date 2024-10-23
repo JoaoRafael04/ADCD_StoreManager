@@ -1,0 +1,11 @@
+{% extends 'menu.html' %}
+
+{% block inner_content %}
+<h2>Delete Company</h2>
+<p>Are you sure you want to delete the company "<strong>{{ company.name }}</strong>"?</p>
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="{% url 'company_list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
