@@ -88,7 +88,6 @@ MIDDLEWARE = [
 ]
 
 # Other configurations (like TEMPLATES, WSGI_APPLICATION, etc.) would follow here...
-# Other configurations (like TEMPLATES, WSGI_APPLICATION, etc.) would follow here...
 
 ROOT_URLCONF = "store_manager.urls"
 AUTH_USER_MODEL = 'accounts.Customuser'
