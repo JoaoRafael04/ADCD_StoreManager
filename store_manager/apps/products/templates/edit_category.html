@@ -16,5 +16,5 @@
     </div>
     <button type="submit" class="btn btn-primary">Update Category</button>
 </form>
-<a href="{% url 'category_detail' category.id %}" class="btn btn-secondary mt-3">Cancel</a>
+<a href="{% url 'category_detail' category.slug %}" class="btn btn-secondary mt-3">Cancel</a>
 {% endblock %}

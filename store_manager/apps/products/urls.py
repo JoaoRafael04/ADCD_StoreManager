@@ -7,6 +7,4 @@ urlpatterns = [
     path('categories/<slug:slug>/', views.category_detail, name='category_detail'),  # Category detail with slug
     path('products/categories/<slug:slug>/edit/', views.edit_category, name='edit_category'),
     path('products/categories/<slug:slug>/delete/', views.delete_category, name='delete_category'),
-
-
 ]

@@ -81,6 +81,8 @@ ADCD StoreManager é uma solução completa e intuitiva para gerenciamento de es
 </ul>
 </details>
 
+<summary>Entrega 2</summary>
+
 ## Links
 
 - **Link do Jira**
