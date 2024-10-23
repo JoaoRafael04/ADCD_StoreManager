@@ -29,7 +29,13 @@ jobs:
       
       - name: Install dependencies
         run: pip install -r store_manager/requirements.txt
-        
+      
+      - name: Tests
+        run: |
+          python manage.py test apps.accounts.tests
+          python manage.py test apps.companies.tests
+          python manage.py test apps.products.tests
+          
       - name: Cleaning testing files
         run: |
           cd store_manager/
