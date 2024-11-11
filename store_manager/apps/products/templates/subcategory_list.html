@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Subcategory List for {{ category.name }}{% endblock %}
+
+{% block content %}
+<h1>Subcategory List for {{ category.name }}</h1>
+
+<!-- Botão para Registrar Nova Subcategoria -->
+<div class="mb-3">
+    <a href="{% url 'register_subcategory' category.id %}" class="btn btn-primary">
+        Register New Subcategory
+    </a>
+</div>
+
+<ul class="list-group">
+    {% for subcategory in subcategories %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <a href="{% url 'product_list' subcategory.id %}" class="text-decoration-none">
+                {{ subcategory.name }}
+            </a>
+
+            <a href="{% url 'subcategory_detail' subcategory.id %}" class="btn btn-info btn-sm">
+                View Details
+            </a>
+        </li>
+    {% empty %}
+        <li class="list-group-item">No subcategories available for this category.</li>
+    {% endfor %}
+</ul>
+
+<!-- Botão para Voltar à Lista de Categorias -->
+<a href="{% url 'category_list' category.branch.id %}" class="btn btn-secondary mt-3">
+    Back to Category List
+</a>
+
+<!-- Botão para o Menu -->
+<a href="{% url 'menu' %}" class="btn btn-secondary mt-3">
+    <i class="fas fa-home"></i> Menu
+</a>
+{% endblock %}

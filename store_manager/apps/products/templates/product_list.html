@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Product List for {{ subcategory.name }}{% endblock %}
+
+{% block content %}
+<h1>Product List for {{ subcategory.name }}</h1>
+
+<!-- Botão para Adicionar Novo Produto -->
+<div class="mb-3">
+    <a href="{% url 'add_product' subcategory.id %}" class="btn btn-primary">
+        Add New Product
+    </a>
+</div>
+
+<ul class="list-group">
+    {% for product in products %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span>{{ product.name }} - ${{ product.price }}</span>
+            <!-- Você pode adicionar mais informações ou botões de ação aqui, como edição e exclusão -->
+        </li>
+    {% empty %}
+        <li class="list-group-item">No products available in this subcategory.</li>
+    {% endfor %}
+</ul>
+
+<!-- Botão para Voltar à Lista de Subcategorias -->
+<a href="{% url 'subcategory_list' subcategory.category.id %}" class="btn btn-secondary mt-3">
+    Back to Subcategory List
+</a>
+
+<!-- Botão para o Menu -->
+<a href="{% url 'menu' %}" class="btn btn-secondary mt-3">
+    <i class="fas fa-home"></i> Menu
+</a>
+{% endblock %}

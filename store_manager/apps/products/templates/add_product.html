@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Add New Product{% endblock %}
+
+{% block content %}
+<h1>Add New Product for {{ subcategory.name }}</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="name" class="form-label">Product Name</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+    </div>
+    <div class="mb-3">
+        <label for="sku" class="form-label">SKU</label>
+        <input type="text" class="form-control" id="sku" name="sku" required>
+    </div>
+    <div class="mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input type="number" class="form-control" id="price" name="price" step="0.01" required>
+    </div>
+    <div class="mb-3">
+        <label for="quantity" class="form-label">Quantity</label>
+        <input type="number" class="form-control" id="quantity" name="quantity" required>
+    </div>
+    <div class="mb-3">
+        <label for="brand" class="form-label">Brand</label>
+        <input type="text" class="form-control" id="brand" name="brand">
+    </div>
+    <div class="mb-3">
+        <label for="expiration_date" class="form-label">Expiration Date</label>
+        <input type="date" class="form-control" id="expiration_date" name="expiration_date">
+    </div>
+    <div class="mb-3">
+        <label for="characteristics" class="form-label">Characteristics (JSON format)</label>
+        <textarea class="form-control" id="characteristics" name="characteristics"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Product</button>
+</form>
+
+<!-- Botão para Voltar à Lista de Produtos -->
+<a href="{% url 'product_list' subcategory.id %}" class="btn btn-secondary mt-3">
+    Back to Product List
+</a>
+{% endblock %}

@@ -103,3 +103,120 @@ def delete_category(request, slug):
         return redirect('category_list', branch_id=branch_id)  # Pass the branch_id here
 
     return render(request, 'delete_category.html', {'category': category})
+
+# View to list all subcategories for a specific category
+@login_required
+def subcategory_list(request, category_id):
+    category = get_object_or_404(Category, id=category_id)
+    subcategories = Subcategory.objects.filter(category=category)
+
+    if not subcategories.exists():
+        messages.info(request, f"No subcategories found for {category.name}.")
+
+    return render(request, 'subcategory_list.html', {'category': category, 'subcategories': subcategories})
+
+# View to registar a new subcategory for a specific category
+@login_required
+def register_subcategory(request, category_id):
+    category = get_object_or_404(Category, id=category_id)
+
+    if request.method == 'POST':
+        name = request.POST.get('name')
+
+        if not name:
+            messages.error(request, 'Please enter a name for the subcategory.')
+            return render(request, 'register_subcategory.html', {'category': category})
+
+        if Subcategory.objects.filter(name=name, category=category).exists():
+            messages.error(request, 'A subcategory with this name already exists.')
+            return render(request, 'register_subcategory.html', {'category': category})
+
+        subcategory = Subcategory(name=name, category=category)
+        subcategory.save()
+
+        messages.success(request, 'Subcategory registered successfully!')
+        return redirect('subcategory_list', category_id=category.id)
+
+    return render(request, 'register_subcategory.html', {'category': category})
+
+@login_required
+def subcategory_detail(request, subcategory_id):
+    subcategory = get_object_or_404(Subcategory, id=subcategory_id)
+    return render(request, 'subcategory_detail.html', {'subcategory': subcategory})
+
+@login_required
+def edit_subcategory(request, subcategory_id):
+    subcategory = get_object_or_404(Subcategory, id=subcategory_id)
+
+    if request.method == 'POST':
+        name = request.POST.get('name')
+
+        if not name:
+            messages.error(request, 'Please enter a name for the subcategory.')
+            return render(request, 'edit_subcategory.html', {'subcategory': subcategory})
+
+        subcategory.name = name
+        subcategory.save()
+        messages.success(request, 'Subcategory updated successfully!')
+        return redirect('subcategory_detail', subcategory_id=subcategory.id)
+
+    return render(request, 'edit_subcategory.html', {'subcategory': subcategory})
+
+@login_required
+def delete_subcategory(request, subcategory_id):
+    subcategory = get_object_or_404(Subcategory, id=subcategory_id)
+    category_id = subcategory.category.id
+
+    if request.method == 'POST':
+        subcategory.delete()
+        messages.success(request, 'Subcategory deleted successfully!')
+        return redirect('subcategory_list', category_id=category_id)
+
+    return render(request, 'delete_subcategory.html', {'subcategory': subcategory})
+
+@login_required
+def product_list(request, subcategory_id):
+    subcategory = get_object_or_404(Subcategory, id=subcategory_id)
+    products = Product.objects.filter(subcategory=subcategory)
+
+    return render(request, 'product_list.html', {
+        'subcategory': subcategory,
+        'products': products
+    })
+
+@login_required
+def add_product(request, subcategory_id):
+    subcategory = get_object_or_404(Subcategory, id=subcategory_id)
+
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        sku = request.POST.get('sku')
+        price = request.POST.get('price')
+        quantity = request.POST.get('quantity')
+        brand = request.POST.get('brand')
+        expiration_date = request.POST.get('expiration_date')
+        characteristics = request.POST.get('characteristics')
+
+        # Validação simples dos campos
+        if not name or not sku or not price or not quantity:
+            messages.error(request, 'Please fill in all required fields.')
+            return render(request, 'add_product.html', {'subcategory': subcategory})
+
+        # Criação do produto
+        product = Product(
+            name=name,
+            sku=sku,
+            price=price,
+            quantity=quantity,
+            subcategory=subcategory,
+            category=subcategory.category,  # Define a categoria automaticamente
+            brand=brand,
+            expiration_date=expiration_date,
+            characteristics=characteristics
+        )
+        product.save()
+
+        messages.success(request, 'Product added successfully!')
+        return redirect('product_list', subcategory_id=subcategory.id)
+
+    return render(request, 'add_product.html', {'subcategory': subcategory})
