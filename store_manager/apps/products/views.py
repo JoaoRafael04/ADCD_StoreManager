@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Category, Subcategory, Product
 from apps.companies.models import Branch, Company
-
+import json
 
 # View to list all categories for a specific branch
 @login_required
@@ -178,6 +178,11 @@ def delete_subcategory(request, subcategory_id):
 def product_list(request, subcategory_id):
     subcategory = get_object_or_404(Subcategory, id=subcategory_id)
     products = Product.objects.filter(subcategory=subcategory)
+    
+    # Converte o campo `characteristics` para JSON
+    for product in products:
+        if isinstance(product.characteristics, str):
+            product.characteristics = json.loads(product.characteristics)
 
     return render(request, 'product_list.html', {
         'subcategory': subcategory,
@@ -220,3 +225,52 @@ def add_product(request, subcategory_id):
         return redirect('product_list', subcategory_id=subcategory.id)
 
     return render(request, 'add_product.html', {'subcategory': subcategory})
+
+@login_required
+def product_details(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    
+    # Verifica se as características são uma string JSON e as converte
+    if isinstance(product.characteristics, str):
+        product.characteristics = json.loads(product.characteristics)
+
+    return render(request, 'product_details.html', {'product': product})
+
+@login_required
+def edit_product(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    
+    if request.method == 'POST':
+        product.name = request.POST.get('name')
+        product.sku = request.POST.get('sku')
+        product.price = request.POST.get('price')
+        product.quantity = request.POST.get('quantity')
+        product.brand = request.POST.get('brand')
+        product.expiration_date = request.POST.get('expiration_date')
+        
+        # Atualizar as características no formato JSON, se fornecidas
+        characteristics = request.POST.get('characteristics')
+        if characteristics:
+            import json
+            try:
+                product.characteristics = json.loads(characteristics)
+            except json.JSONDecodeError:
+                messages.error(request, 'Invalid JSON format for characteristics.')
+                return render(request, 'edit_product.html', {'product': product})
+        
+        product.save()
+        messages.success(request, 'Product updated successfully!')
+        return redirect('product_details', product_id=product.id)
+
+    return render(request, 'edit_product.html', {'product': product})
+
+@login_required
+def delete_product(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    
+    if request.method == 'POST':
+        product.delete()
+        messages.success(request, 'Product deleted successfully!')
+        return redirect('product_list', subcategory_id=product.subcategory.id)
+
+    return render(request, 'delete_product.html', {'product': product})

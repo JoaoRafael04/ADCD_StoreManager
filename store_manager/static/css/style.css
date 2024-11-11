@@ -105,3 +105,26 @@ footer {
         margin-top: 15px; /* Add margin for spacing */
     }
 }
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    padding: 1.5em;
+}
+
+.card-title {
+    font-size: 1.25em;
+    margin-bottom: 0.5em;
+}
+
+ul {
+    padding-left: 1.2em;
+}
+
+ul li {
+    list-style-type: disc;
+}

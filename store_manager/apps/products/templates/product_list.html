@@ -12,16 +12,39 @@
     </a>
 </div>
 
-<ul class="list-group">
+<div class="row">
     {% for product in products %}
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            <span>{{ product.name }} - ${{ product.price }}</span>
-            <!-- Você pode adicionar mais informações ou botões de ação aqui, como edição e exclusão -->
-        </li>
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p><strong>SKU:</strong> {{ product.sku }}</p>
+                    <p><strong>Price:</strong> ${{ product.price }}</p>
+                    <p><strong>Quantity:</strong> {{ product.quantity }}</p>
+                    <p><strong>Category:</strong> {{ product.category.name }}</p>
+                    <p><strong>Subcategory:</strong> {{ product.subcategory.name }}</p>
+                    <p><strong>Brand:</strong> {{ product.brand }}</p>
+                    {% if product.expiration_date %}
+                        <p><strong>Expiration Date:</strong> {{ product.expiration_date }}</p>
+                    {% endif %}
+                    <p><strong>Characteristics:</strong></p>
+                    <ul>
+                        {% for key, value in product.characteristics.items %}
+                            <li><strong>{{ key }}:</strong> {{ value }}</li>
+                        {% endfor %}
+                    </ul>
+
+                    <!-- Botão para Visualizar Detalhes -->
+                    <a href="{% url 'product_details' product.id %}" class="btn btn-info btn-sm mt-3">
+                        View Details
+                    </a>
+                </div>
+            </div>
+        </div>
     {% empty %}
-        <li class="list-group-item">No products available in this subcategory.</li>
+        <p>No products available in this subcategory.</p>
     {% endfor %}
-</ul>
+</div>
 
 <!-- Botão para Voltar à Lista de Subcategorias -->
 <a href="{% url 'subcategory_list' subcategory.category.id %}" class="btn btn-secondary mt-3">
