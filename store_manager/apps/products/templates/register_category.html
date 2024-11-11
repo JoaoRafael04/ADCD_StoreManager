@@ -13,5 +13,6 @@
         <textarea name="description" class="form-control"></textarea>
     </div>
     <button type="submit" class="btn btn-primary mt-3">Register Category</button>
+    <a href="{% url 'category_list' branch.id %}" class="btn btn-secondary mt-3">Cancel</a> <!-- Use branch.id instead of branch.slug -->
 </form>
 {% endblock %}

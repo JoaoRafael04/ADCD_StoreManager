@@ -15,13 +15,15 @@
 <ul class="list-group">
     {% for category in categories %}
         <li class="list-group-item d-flex justify-content-between align-items-center">
-            <span>{{ category.name }}</span>
+            <!-- Link to Subcategory List for this Category -->
+            <a href="{% url 'subcategory_list' category.slug %}" class="text-decoration-none">
+                {{ category.name }}
+            </a>
 
-            <!-- "Details" button -->
+            <!-- "View Details" button -->
             <a href="{% url 'category_detail' category.slug %}" class="btn btn-info btn-sm">
                 View Details
             </a>
-                                            
         </li>
     {% empty %}
         <li class="list-group-item">No categories available for this branch.</li>
