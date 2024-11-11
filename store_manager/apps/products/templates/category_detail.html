@@ -14,7 +14,7 @@
 </div>
 
 <!-- Button to go back to Categories List -->
-<a href="{% url 'category_list' category.branch.id %}" class="btn btn-secondary mt-3">
+<a href="{% url 'category_list' category.branch.id %}" class="btn btn-secondary mt-3"> <!-- Use branch.id instead of branch.slug -->
     Back to Categories List
 </a>
 

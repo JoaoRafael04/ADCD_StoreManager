@@ -16,8 +16,8 @@
     <button type="submit" class="btn btn-primary">Register Subcategory</button>
 </form>
 
-<!-- Botão para voltar à lista de subcategorias -->
-<a href="{% url 'subcategory_list' category.id %}" class="btn btn-secondary mt-3">
+<!-- Button to go back to Subcategory List -->
+<a href="{% url 'subcategory_list' category.slug %}" class="btn btn-secondary mt-3">
     Back to Subcategory List
 </a>
 {% endblock %}

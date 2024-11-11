@@ -7,18 +7,18 @@
 
 <p><strong>Category:</strong> {{ subcategory.category.name }}</p>
 
-<!-- Opções de Edição e Exclusão -->
+<!-- Edit and Delete Options -->
 <div class="edit-delete-options mt-3">
-    <a href="{% url 'edit_subcategory' subcategory.id %}" class="btn btn-primary">Edit Subcategory</a>
-    <a href="{% url 'delete_subcategory' subcategory.id %}" class="btn btn-danger">Delete Subcategory</a>
+    <a href="{% url 'edit_subcategory' subcategory.slug %}" class="btn btn-primary">Edit Subcategory</a>
+    <a href="{% url 'delete_subcategory' subcategory.slug %}" class="btn btn-danger">Delete Subcategory</a>
 </div>
 
-<!-- Botão para Voltar à Lista de Subcategorias -->
-<a href="{% url 'subcategory_list' subcategory.category.id %}" class="btn btn-secondary mt-3">
+<!-- Button to Go Back to Subcategory List -->
+<a href="{% url 'subcategory_list' subcategory.category.slug %}" class="btn btn-secondary mt-3">
     Back to Subcategory List
 </a>
 
-<!-- Botão para o Menu -->
+<!-- Home button -->
 <a href="{% url 'menu' %}" class="btn btn-secondary mt-3">
     <i class="fas fa-home"></i> Menu
 </a>

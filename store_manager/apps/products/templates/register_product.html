@@ -39,8 +39,8 @@
     <button type="submit" class="btn btn-primary">Add Product</button>
 </form>
 
-<!-- Botão para Voltar à Lista de Produtos -->
-<a href="{% url 'product_list' subcategory.id %}" class="btn btn-secondary mt-3">
+<!-- Button to Go Back to Product List -->
+<a href="{% url 'product_list' subcategory.slug %}" class="btn btn-secondary mt-3">
     Back to Product List
 </a>
 {% endblock %}

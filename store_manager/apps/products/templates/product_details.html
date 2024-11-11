@@ -25,12 +25,12 @@
 
 <!-- Edit and Delete Options -->
 <div class="edit-delete-options mt-3">
-    <a href="{% url 'edit_product' product.id %}" class="btn btn-primary">Edit Product</a>
-    <a href="{% url 'delete_product' product.id %}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this product?')">Delete Product</a>
+    <a href="{% url 'edit_product' product.slug %}" class="btn btn-primary">Edit Product</a>
+    <a href="{% url 'delete_product' product.slug %}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this product?')">Delete Product</a>
 </div>
 
 <!-- Button to go back to Product List -->
-<a href="{% url 'product_list' product.subcategory.id %}" class="btn btn-secondary mt-3">
+<a href="{% url 'product_list' product.subcategory.slug %}" class="btn btn-secondary mt-3">
     Back to Product List
 </a>
 
