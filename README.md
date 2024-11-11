@@ -91,7 +91,7 @@ ADCD StoreManager é uma solução completa e intuitiva para gerenciamento de es
 </li>
   
 <li>
-    <a  href="Imagens/sprint3.png"
+    <a  href=""
       >Imagem do Board no Jira</a
     >
   </li>
@@ -104,6 +104,50 @@ ADCD StoreManager é uma solução completa e intuitiva para gerenciamento de es
   <li>
     <a  href="https://youtu.be/2BrqfAbknA0"
       >Screencast do lo-fi</a
+    >
+  </li>
+</ul>
+</details>
+
+<details>
+<summary>Entrega 4</summary>
+<ul>
+  <li>
+<a href="Imagens/historias_backlog_2.png">Imagem do Backlog no Jira</a>
+</li>
+  
+<li>
+    <a  href="Imagens/Captura de tela 2024-11-11 150454.png"
+      >Imagem do Board no Jira</a
+    >
+  </li>
+
+  <li>
+    <a  href=""
+      >Screencast do site</a
+    >
+  </li>
+  <li>
+    <a  href=""
+      >Screencast do Lo-Fi</a
+    >
+  </li>
+
+  <li>
+    <a  href=""
+      >Issue/Bug Tracker</a
+    >
+  </li>
+
+  <li>
+    <a  href=""
+      >Screencast da execução dos testes</a
+    >
+  </li>
+
+  <li>
+    <a  href=""
+      >Screencast do Processo de Build</a
     >
   </li>
 </ul>
