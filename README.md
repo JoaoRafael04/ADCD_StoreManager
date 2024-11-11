@@ -170,9 +170,9 @@ https://www.figma.com/design/h8iUL4X9aDi0fdhbmwFAkm/PROJETO-BAIXA-FIDELIDADE?nod
 [https://excalidraw.com/#room=c5d3c64e7ba02faf097d,kZaIXbL52UexlnZmBIus1A](https://excalidraw.com/#room=c5d3c64e7ba02faf097d,kZaIXbL52UexlnZmBIus1A)
 
 
-## 📄 Docs
+## 📄 CONTRIBUTING.md
 
-[📄 Documentaçāo]() - Pendente....
+[📄 Contributing](https://github.com/JoaoRafael04/ADCD_StoreManager/blob/main/CONTRIBUTING.md) 
 
 ## 👥 Creditos
 

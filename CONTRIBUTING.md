@@ -1,5 +1,3 @@
-<a href="https://imgur.com/8SEQm2C"><img src="https://i.imgur.com/8SEQm2C.jpg" title="source: imgur.com" /></a>
-
 ## 👋 Bem-vindo(a)! 
 Se você chegou até aqui tenho certeza de que você tem interesse em  otimizar a operação de sua empresa e melhorar a eficiência na administração dos produtos. 
 
