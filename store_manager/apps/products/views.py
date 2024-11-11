@@ -20,8 +20,8 @@ def category_list(request, branch_id):
 
 # View details of a specific category
 @login_required
-def category_detail(request, slug):
-    category = get_object_or_404(Category, slug=slug)
+def category_detail(request, category_slug):
+    category = get_object_or_404(Category, slug=category_slug)
     return render(request, 'category_detail.html', {'category': category})
 
 
@@ -53,8 +53,8 @@ def register_category(request, branch_id):
 
 # Edit an existing category
 @login_required
-def edit_category(request, slug):
-    category = get_object_or_404(Category, slug=slug)
+def edit_category(request, category_slug):
+    category = get_object_or_404(Category, slug=category_slug)
 
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -69,7 +69,8 @@ def edit_category(request, slug):
         category.save()
 
         messages.success(request, 'Category updated successfully!')
-        return redirect('category_detail', slug=category.slug)
+        return redirect('category_detail', category_slug=category.slug)
+
 
     return render(request, 'edit_category.html', {'category': category})
 
