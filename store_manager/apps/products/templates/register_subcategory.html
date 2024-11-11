@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Register Subcategory for {{ category.name }}{% endblock %}
+
+{% block content %}
+<h1>Register Subcategory for {{ category.name }}</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    
+    <div class="mb-3">
+        <label for="name" class="form-label">Subcategory Name</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Register Subcategory</button>
+</form>
+
+<!-- Button to go back to Subcategory List -->
+<a href="{% url 'subcategory_list' category.slug %}" class="btn btn-secondary mt-3">
+    Back to Subcategory List
+</a>
+{% endblock %}
