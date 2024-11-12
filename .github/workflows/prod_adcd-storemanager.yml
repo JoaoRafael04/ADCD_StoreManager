@@ -29,20 +29,45 @@ jobs:
       
       - name: Install dependencies
         run: pip install -r store_manager/requirements.txt
+
+      - name: Install Bandit for security checks
+        run: pip install bandit
+
+      - name: Run Bandit security check
+        run: |
+          source venv/bin/activate
+          bandit -r store_manager/ -o bandit_report.txt -f txt
+          
+      - name: Upload Bandit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: bandit-report
+          path: bandit_report.txt
       
-      - name: Tests
+      - name: Install coverage tool
+        run: pip install coverage
+
+      - name: Run tests with coverage
         run: |
           cd store_manager/
-          python manage.py test apps.accounts.tests
-          python manage.py test apps.companies.tests
-          python manage.py test apps.products.tests
+          coverage run --source='.' manage.py test apps.accounts.tests --verbosity=2
+          coverage run --source='.' manage.py test apps.companies.tests --verbosity=2
+          coverage run --source='.' manage.py test apps.products.tests --verbosity=2
+          coverage report
+          coverage xml
+          coverage html
 
-      - name: Cleaning testing files
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: store_manager/htmlcov/
+
+      - name: Clean up testing files
         run: |
           cd store_manager/
           rm db.sqlite3
           cd ..
-      # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
       - name: Zip artifact for deployment
         run: |
