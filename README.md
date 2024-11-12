@@ -123,31 +123,25 @@ ADCD StoreManager é uma solução completa e intuitiva para gerenciamento de es
   </li>
 
   <li>
-    <a  href=""
+    <a  href="https://youtu.be/vhPL4hu4It4"
       >Screencast do site</a
     >
   </li>
   <li>
-    <a  href=""
+    <a  href="https://youtu.be/bkFG1FU7Iec"
       >Screencast do Lo-Fi</a
     >
   </li>
 
   <li>
-    <a  href=""
+    <a  href="https://youtu.be/43eCEABAQcs"
       >Issue/Bug Tracker</a
     >
   </li>
 
   <li>
-    <a  href=""
-      >Screencast da execução dos testes</a
-    >
-  </li>
-
-  <li>
-    <a  href=""
-      >Screencast do Processo de Build</a
+    <a  href="https://youtu.be/r-RnztTa5yE"
+      >Screencast do Processo de Build + Testes</a
     >
   </li>
 </ul>
