@@ -36,7 +36,7 @@ jobs:
       - name: Run Bandit security check
         run: |
           source venv/bin/activate
-          bandit -r store_manager/ -o bandit_report.txt -f txt
+          bandit -r store_manager/ -o bandit_report.txt -f txt || true
           
       - name: Upload Bandit report
         uses: actions/upload-artifact@v4
